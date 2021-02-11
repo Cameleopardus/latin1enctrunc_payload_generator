@@ -12,11 +12,13 @@
 from collections import defaultdict
 import random
 import sys
+import os
+
 # Latin character set that we want to translate to.
 LATIN_START = "00020"
 LATIN_END = "007E"
 
-LATIN_MAP = {}
+LATIN_MAP = {"0d": "\r", "0a": "\n"} # we need some additional control codes as well as the latin charset
 UNICODE_MAP = defaultdict(list)
 
 SUPP_START_CODE = "00A0" # Start if Latin-1 Supplement unicode space
@@ -25,7 +27,6 @@ CYR_END_CODE = "04FF" # End of cyrillic
 BLACKLIST_CHARS = ['0378', '0379'] # couple of greek letters that don't play well for some reason.
 
 def main():
-    import os
  
     if len(sys.argv) < 3:
         print(f"Usage: {os.path.basename(__file__)} inputfile.txt outputfile.txt")
@@ -53,11 +54,11 @@ def main():
     to_translate = None
     with open(sys.argv[1], 'r') as f:
         to_translate = f.read()
-    for s in to_translate:
-        for k,v in UNICODE_MAP.items():
-            if s == k:
-                chars.append(random.choice(v))
 
+    for ss in to_translate:
+        for k,v in UNICODE_MAP.items():
+            if ss == k:
+                chars.append(random.choice(v))
     translated = "".join(chars)
     print(translated)
     with open(sys.argv[2], 'w') as f:
