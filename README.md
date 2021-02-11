@@ -5,5 +5,5 @@
     that when converted by a vulnerable application would translate back into the original basic latin text body.
 
     This is useful for performing http request smuggling and server side request forgery.
-    
-    ![image](https://user-images.githubusercontent.com/1418489/107708021-ac25d280-6c77-11eb-86fd-6bd7f8e79e26.png)
+ 
+![image](https://user-images.githubusercontent.com/1418489/107708021-ac25d280-6c77-11eb-86fd-6bd7f8e79e26.png)
